@@ -1,4 +1,5 @@
 from flask import Flask, request
+import os
 
 app = Flask(__name__)
 
@@ -15,7 +16,7 @@ def home():
     <li><a href="/phishing">Phishing Website Detector</a></li>
     <li><a href="/encryption">File Encryption Tool</a></li>
     <li><a href="/sniffer">Network Packet Sniffer</a></li>
-</ul>
+    </ul>
     """
 
 # PASSWORD CHECKER
@@ -132,5 +133,7 @@ def sniffer():
     <a href="/">Go Back</a>
     """
 
+# RUN SERVER
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port, debug=True)
